@@ -5,7 +5,7 @@ require('laravel-mix-eslint');
 
 mix.options({
    hmrOptions: {
-     host: '192.168.10.10',
+     host: 'laravel-example.local',
      port: 8080
    },
  });
@@ -26,5 +26,5 @@ mix.webpackConfig({
 });
 
 mix.js('resources/js/app.js', 'public/js')
-   .eslint(eslintConfig)
-   .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css')
+   .eslint(eslintConfig);

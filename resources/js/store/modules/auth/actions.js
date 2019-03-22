@@ -3,52 +3,22 @@ import * as actions from '../../action-types';
 import auth from '../../../api/auth';
 
 export default {
-  [actions.LOGIN](context, credentials) {
-    return new Promise((resolve, reject) => {
-      auth.login(credentials).then((response) => {
-        context.commit(mutations.LOGGED, true);
-        resolve(response);
-      }).catch((error) => {
-        reject(error);
-      });
-    });
+  async [actions.LOGIN](context, credentials) {
+    await auth.login(credentials);
+    context.commit(mutations.LOGGED);
   },
-  [actions.LOGOUT](context) {
-    return new Promise((resolve, reject) => {
-      auth.logout().then((response) => {
-        context.commit(mutations.LOGGED, false);
-        resolve(response);
-      }).catch((error) => {
-        reject(error);
-      });
-    });
+  async [actions.LOGOUT](context) {
+    await auth.logout();
+    context.commit(mutations.LOGGED, false);
   },
-  [actions.REGISTER](context, user) {
-    return new Promise((resolve, reject) => {
-      auth.register(user).then((response) => {
-        context.commit(mutations.LOGGED, false);
-        resolve(response);
-      }).catch((error) => {
-        reject(error);
-      });
-    });
+  async [actions.REGISTER](context, user) {
+    await auth.register(user);
+    context.commit(mutations.LOGGED, false);
   },
-  [actions.REMEMBER_PASSWORD](context, email) {
-    return new Promise((resolve, reject) => {
-      auth.remember(email).then((response) => {
-        resolve(response);
-      }).catch((error) => {
-        reject(error);
-      });
-    });
+  async [actions.REMEMBER_PASSWORD](_context, email) {
+    await auth.remember(email);
   },
-  [actions.RESET_PASSWORD](context, user) {
-    return new Promise((resolve, reject) => {
-      auth.reset(user).then((response) => {
-        resolve(response);
-      }).catch((error) => {
-        reject(error);
-      });
-    });
+  async [actions.RESET_PASSWORD](_context, user) {
+    await auth.reset(user);
   },
 };
