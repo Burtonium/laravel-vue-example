@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\Team;
+use App\Player;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class TeamController extends Controller
+class PlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::all();
-        return response()->json($teams);
+        $players = Player::all();
+        return response()->json($players);
     }
 
     /**
@@ -42,21 +43,21 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show(Player $player)
     {
-        return response()->json($team);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit(Player $player)
     {
         //
     }
@@ -65,10 +66,10 @@ class TeamController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Team  $team
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, Player $player)
     {
         //
     }
@@ -76,10 +77,10 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Team  $team
+     * @param  \App\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy(Player $player)
     {
         //
     }

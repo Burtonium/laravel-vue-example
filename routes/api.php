@@ -13,32 +13,35 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['prefix' => 'v1'], function () {
-    Route::resource('players', 'PlayerController')->only([
+    Route::post('login', 'API\PassportController@login');
+    Route::post('register', 'API\PassportController@register');
+
+    Route::resource('players', 'API\PlayerController')->only([
         'index', 'show'
     ]);
 
-    Route::resource('teams', 'TeamController')->only([
+    Route::resource('teams', 'API\TeamController')->only([
         'index', 'show'
     ]);
 
-    Route::resource('contracts', 'ContractController')->only([
+    Route::resource('contracts', 'API\ContractController')->only([
         'index', 'show'
     ]);
 
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('/user', function (Request $request) {
-            return response()->json($resquest->user());
+            return response()->json($request->user());
         });
 
-        Route::resource('players', 'PlayerController')->except([
+        Route::resource('players', 'API\PlayerController')->except([
             'index', 'show', 'create'
         ]);
         
-        Route::resource('teams', 'TeamsController')->except([
+        Route::resource('teams', 'API\TeamsController')->except([
             'index', 'show', 'create'
         ])->middleware('admin');
 
-        Route::resource('contracts', 'ContractController')->except([
+        Route::resource('contracts', 'API\ContractController')->except([
             'index', 'show', 'create'
         ])->middleware('admin');
     });
