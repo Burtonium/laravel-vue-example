@@ -14,8 +14,6 @@ class Contract extends Pivot
      */
     public $incrementing = true;
 
-
-
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +21,15 @@ class Contract extends Pivot
      */
     protected $fillable = [
         'player_id', 'team_id',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'termination_date' => 'date',
     ];
 
     /**
