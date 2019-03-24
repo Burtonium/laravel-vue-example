@@ -3,41 +3,19 @@
     v-cloak
     light
   >
-    <snackbar />
-    <v-toolbar class="primary">
-      <v-toolbar-title>App Name</v-toolbar-title>
-      <v-spacer />
-      <button>Suh</button>
-    </v-toolbar>
+    <v-snackbar />
+    <nav-bar />
     <transition name="fade">
       <router-view />
     </transition>
   </v-app>
 </template>
 <script>
-import { mapGetters } from 'vuex';
-
+import NavBar from '@/js/components/NavBar.vue';
 export default {
-  data() {
-    return {
-      drawer: null,
-      drawerRight: false,
-      logoutLoading: false,
-    };
-  },
-  computed: {
-    ...mapGetters(['user']),
-  },
-  methods: {
-    toogleRightDrawer() {
-      this.drawerRight = !this.drawerRight;
-    },
-    async logout() {
-      this.logoutLoading = true;
-      const response = await this.$store.dispatch(actions.LOGOUT)
-        .finally(() => { this.logoutLoading = false; });
-    },
-  },
+  components: {
+    NavBar,
+  }
 };
 </script>
 <style>

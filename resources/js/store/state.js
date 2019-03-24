@@ -1,0 +1,1 @@
+export const STORAGE_KEY = 'laravel-project';

@@ -4,21 +4,19 @@ import auth from '../../../api/auth';
 
 export default {
   async [actions.LOGIN](context, credentials) {
-    await auth.login(credentials);
-    context.commit(mutations.LOGGED);
+    const response = await auth.login(credentials);
+    context.commit(mutations.LOGGED, response.status === 200);
+    context.commit(mutations.SET_TOKEN, response.success.token);
+    return response;
   },
   async [actions.LOGOUT](context) {
-    await auth.logout();
+    const response = await auth.logout();
     context.commit(mutations.LOGGED, false);
+    return response;
   },
   async [actions.REGISTER](context, user) {
-    await auth.register(user);
+    const response = await auth.register(user);
     context.commit(mutations.LOGGED, false);
-  },
-  async [actions.REMEMBER_PASSWORD](_context, email) {
-    await auth.remember(email);
-  },
-  async [actions.RESET_PASSWORD](_context, user) {
-    await auth.reset(user);
+    return response;
   },
 };

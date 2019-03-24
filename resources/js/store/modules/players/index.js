@@ -1,15 +1,15 @@
 import getters from './getters';
-import actions from './actions';
 import mutations from './mutations';
+import actions from './actions';
 
 const state = {
-  selected_user: {},
-  users: [],
+  players: [],
+  selectedPlayer: {}
 };
 
 export default {
   state,
   getters,
-  actions,
   mutations,
+  actions,
 };

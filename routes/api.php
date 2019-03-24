@@ -45,6 +45,11 @@ Route::group(['prefix' => 'v1'], function () {
             'index', 'show', 'create'
         ])->middleware('admin');
     });
+
+    // Catch all for api routes 404
+    Route::get('/{any}', function () {
+        return abort(404);
+    })->where('any', '.*');
 });
 
 

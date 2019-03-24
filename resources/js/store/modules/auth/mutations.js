@@ -7,4 +7,7 @@ export default {
   [types.USER](state, user) {
     state.user = user;
   },
+  [types.SET_TOKEN](state, token) {
+    state.token = token;
+  }
 };

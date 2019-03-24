@@ -1,14 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Example from '@/js/components/ExampleComponent';
+import Players from '@/js/pages/Players.vue';
+import Teams from '@/js/pages/Teams.vue';
 
 Vue.use(Router);
 
-const routes = [
-  {
-    name: 'Example',
+const routes = [{
+    name: 'Home',
     path: '/',
-    component: Example,
+    redirect: '/players',
+  }, {
+    name: 'Players',
+    path: '/players',
+    component: Players,
+  }, {
+    name: 'Teams',
+    path: '/teams',
+    component: Teams,
   },
 ];
 
