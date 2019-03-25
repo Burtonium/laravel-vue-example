@@ -47,4 +47,9 @@ class Contract extends Pivot
     {
         return $this->belongsToOne('App\Team');
     }
+
+    public function scopeActive($query) 
+    {
+        return $query->whereNull('termination_date')->orWhere('termination_date', '>', Carbon::today());
+    }
 }

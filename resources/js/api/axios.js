@@ -19,4 +19,12 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
+instance.interceptors.request.use((config) => {
+  const { auth } = store.state;
+  if (auth.logged) {
+    Object.assign(config.headers, { 'AUTHORIZATION': `Bearer ${auth.token}` });
+  }
+  return config;
+});
+
 export default instance;

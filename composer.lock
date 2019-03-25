@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd0e8d087292c2681e357b1f09b020b0",
+    "content-hash": "fea271762a464e9d21b3e8439f98c4a9",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -474,6 +474,33 @@
             "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
             "homepage": "https://github.com/firebase/php-jwt",
             "time": "2017-06-27T22:17:23+00:00"
+        },
+        {
+            "name": "grohiro/laravel-camelcase-json",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/grohiro/laravel-camelcase-json.git",
+                "reference": "9659d3c418c835864648f3ba1c2c42d2769a543c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/grohiro/laravel-camelcase-json/zipball/9659d3c418c835864648f3ba1c2c42d2769a543c",
+                "reference": "9659d3c418c835864648f3ba1c2c42d2769a543c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Grohiro\\LaravelCamelCaseJson\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Convert response JSON key to camelCase",
+            "time": "2017-12-11T14:07:52+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -19,6 +19,9 @@ import Vuetify, {
   VContainer,
   VLayout,
   VFlex,
+  VDataTable,
+  VIcon,
+  VSelect,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -41,5 +44,8 @@ Vue.use(Vuetify, {
     VContainer,
     VLayout,
     VFlex,
+    VDataTable,
+    VIcon,
+    VSelect,
   },
 });

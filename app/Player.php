@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Player extends Model
 {
+    public $timestamps = true;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -27,11 +30,8 @@ class Player extends Model
         ])->as('contract');
     }
 
-    /**
-     * Current team the player is signed to
-     */
     public function currentTeam() 
     {
-        
+        return $this->teams()->wherePivot('termination_date', '>', Carbon::today());
     }
 }

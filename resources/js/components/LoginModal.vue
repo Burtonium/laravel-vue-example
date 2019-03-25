@@ -58,7 +58,6 @@
         <v-btn
           color="primary"
           @click="login"
-
           :loading="loginLoading"
         >
           Sign in

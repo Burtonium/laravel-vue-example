@@ -1,5 +1,11 @@
 <template>
+  <teams-table />
 </template>
 <script>
-export default {}
+import TeamsTable from '@/js/components/TeamsTable';
+export default {
+  components: {
+    TeamsTable,
+  }
+}
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Player;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePlayerRequest;
 
 class PlayerController extends Controller
 {
@@ -15,18 +16,21 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        $players = Player::all();
-        return response()->json($players);
-    }
+        $players = Player::with(['currentTeam' => function ($query) {
+            $query->select(['name', 'teams.id']);
+        }])->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $playerTranformer = function ($player) {
+            $team = $player->currentTeam->first();
+            $filtered = array_filter(
+                $player->toArray(),
+                function ($key) { return $key !== 'current_team'; }, 
+                ARRAY_FILTER_USE_KEY
+            );
+
+            return array_merge($filtered, ['team' => $team ? ['name' => $team->name, 'id' => $team->id] : null ]);
+        };
+        return response()->json($players->map($playerTranformer));
     }
 
     /**
@@ -35,20 +39,28 @@ class PlayerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePlayerRequest $request)
     {
-        //
+        $player = new Player;
+        $player->first_name = $request->input('firstName');
+        $player->last_name = $request->input('lastName');
+        $player->save();
+        return response()->json(['player' => $player]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Player  $player
+     * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function show(Player $player)
     {
-        //
+        $teams = $player->teams->sortBy('termination_date');
+        return response()->json([
+            'teams' => $teams,
+            'player' => $player
+        ]);
     }
 
     /**

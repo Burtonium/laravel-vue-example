@@ -4,7 +4,7 @@ export default {
   [types.LOGGED](state, logged) {
     state.logged = logged;
   },
-  [types.USER](state, user) {
+  [types.SET_USER](state, user) {
     state.user = user;
   },
   [types.SET_TOKEN](state, token) {

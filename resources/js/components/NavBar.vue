@@ -1,12 +1,28 @@
 <template>
   <v-toolbar class="primary" dark>
     <v-toolbar-title>
-      PLAYERBASE
+      PLAYER BASE
     </v-toolbar-title>
     <v-spacer />
     <v-toolbar-items>
-      <login-modal />
-      <register-modal />
+      <v-btn :to="'/players'" flat>
+        Players
+      </v-btn>
+      <v-btn :to="'/teams'" flat>
+        Teams
+      </v-btn>
+      <template v-if="logged">
+        <v-btn
+          flat
+          @click="logout"
+        >
+          Logout
+        </v-btn>
+      </template>
+      <template v-else>
+        <login-modal />
+        <register-modal />
+      </template>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -27,7 +43,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['user']),
+    ...mapGetters(['user', 'logged']),
   },
   methods: {
     async logout() {

@@ -6,7 +6,9 @@
     <v-snackbar />
     <nav-bar />
     <transition name="fade">
-      <router-view />
+      <div class="container">
+        <router-view />
+      </div>
     </transition>
   </v-app>
 </template>

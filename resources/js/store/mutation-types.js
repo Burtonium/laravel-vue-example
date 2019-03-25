@@ -2,6 +2,7 @@
 export const LOGGED = 'LOGGED';
 export const USER = 'USER';
 export const SET_TOKEN = 'SET_TOKEN';
+export const SET_USER = 'SET_USER';
 
 // SNACKBAR
 export const SET_SNACKBAR_SHOW = 'SET_SNACKBAR_SHOW';
@@ -13,7 +14,12 @@ export const SET_SNACKBAR_TIMEOUT = 'SET_SNACKBAR_TIMEOUT';
 // PLAYERS
 export const SET_PLAYERS = 'SET_PLAYERS';
 export const SET_SELECTED_PLAYER = 'SET_SELECTED_PLAYER';
+export const ADD_PLAYER = 'ADD_PLAYER';
+export const SET_SELECTED_PLAYER_TEAMS = 'SET_SELECTED_PLAYER_TEAMS';
 
 // TEAMS
 export const SET_TEAMS = 'SET_TEAMS';
 export const SET_SELECTED_TEAM = 'SET_SELECTED_TEAM';
+export const ADD_TEAM = 'ADD_TEAM';
+export const SET_SELECTED_TEAM_PLAYERS = 'SET_SELECTED_TEAM_PLAYERS';
+

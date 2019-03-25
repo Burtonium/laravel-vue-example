@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Team;
+use App\Player;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\StoreTeamRequest;
 
 class TeamController extends Controller
 {
@@ -21,22 +22,12 @@ class TeamController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeamRequest $request)
     {
         //
     }
@@ -49,7 +40,11 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return response()->json($team);
+        $players = $team->players;
+        return response()->json([
+            'team' => $team,
+            'players' => $players
+        ]);
     }
 
     /**

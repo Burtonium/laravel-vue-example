@@ -5,6 +5,7 @@ import actions from './actions';
 const state = {
   teams: [],
   selectedTeam: {},
+  selectedTeamPlayers: [],
 };
 
 export default {
