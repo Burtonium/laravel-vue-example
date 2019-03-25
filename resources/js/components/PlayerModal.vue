@@ -10,17 +10,14 @@
         <span class="headline">{{ formTitle }}</span>
       </v-card-title>
       <v-card-text>
-
-              <v-text-field v-model="item.firstName" label="First name"></v-text-field>
-
-              <v-text-field v-model="item.lastName" label="Last name"></v-text-field>
-
+        <v-text-field v-model="firstName" label="First name"></v-text-field>
+        <v-text-field v-model="lastName" label="Last name"></v-text-field>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="primary" flat @click="close">Cancel</v-btn>
         <v-btn color="primary" @click="save">
-          {{ item.id ? 'Save' : 'Register' }}
+          {{ player.id ? 'Save' : 'Register' }}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -31,10 +28,11 @@ import { ADD_PLAYER, PATCH_PLAYER } from '@/js/store/action-types';
 
 export default {
   data() {
-    return{
-      item: this.player,
+    return {
+      firstName: this.player && this.player.firstName,
+      lastName: this.player && this.player.lastName,
       dialog: this.show,
-    }
+    };
   },
   props: {
     player: {},
@@ -42,28 +40,45 @@ export default {
     noButton: false,
   },
   watch: {
-    dialog (val) {
-      val || this.close()
+    show(val) {
+      this.dialog = val;
+    },
+    dialog(val) {
+      if (!val) {
+        this.$emit('close');
+      }
+    },
+    player(player) {
+      this.firstName = player.firstName;
+      this.lastName = player.lastName;
     }
   },
   computed: {
     formTitle () {
-      return this.item.id ? 'Edit Player' : 'Player Registration';
+      return this.player.id ? 'Edit Player' : 'Player Registration';
     }
   },
   methods: {
     save () {
-      if (this.item.id) {
-        this.$store.dispatch(PATCH_PLAYER, this.item);
+      if (this.player.id) {
+        this.$store.dispatch(PATCH_PLAYER, { 
+          id: this.player.id,
+          firstName: this.firstName,
+          lastName: this.lastName,
+        });
       } else {
-        this.$store.dispatch(ADD_PLAYER, this.item);
+        this.$store.dispatch(ADD_PLAYER, {
+          firstName: this.firstName,
+          lastName: this.lastName
+        });
       }
       this.close()
     },
     close () {
       this.dialog = false;
       setTimeout(() => {
-        this.item = {};
+        this.firstName = '';
+        this.lastName = '';
       }, 300)
     },
   },

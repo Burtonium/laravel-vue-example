@@ -12,5 +12,9 @@ export default {
   },
   [types.ADD_PLAYER](state, player) {
     state.players.push(player);
+  },
+  [types.PATCH_PLAYER](state, player) {
+    const index = state.players.findIndex(p => p.id === player.id);
+    state.players.splice(index, 1, player);
   }
 };

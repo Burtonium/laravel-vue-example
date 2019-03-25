@@ -11,6 +11,6 @@ export default {
     return axios.post('/players', player);
   },
   patch(player) {
-    return axios.patch(`/players/${id}`, player);
+    return axios.patch(`/players/${player.id}`, player);
   }
 };

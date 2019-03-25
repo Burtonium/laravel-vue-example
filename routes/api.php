@@ -37,7 +37,7 @@ Route::group(['prefix' => 'v1'], function () {
             'index', 'show', 'create'
         ]);
         
-        Route::resource('teams', 'API\TeamsController')->except([
+        Route::resource('teams', 'API\TeamController')->except([
             'index', 'show', 'create'
         ])->middleware('admin');
 

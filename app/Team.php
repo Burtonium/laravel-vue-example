@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Team extends Model
 {
     public $timestamps = true;
+    
     /**
      * The attributes that are mass assignable.
      *

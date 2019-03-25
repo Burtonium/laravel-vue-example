@@ -29,7 +29,10 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        //
+        $team = new Team;
+        $team->name = $request->input('name');
+        $team->save();
+        return response()->json(['team' => $team]);
     }
 
     /**

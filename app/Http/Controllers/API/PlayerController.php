@@ -64,17 +64,6 @@ class PlayerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Player  $player
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Player $player)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -83,7 +72,10 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
-        //
+        $player->first_name = $request->input('firstName');
+        $player->last_name = $request->input('lastName');
+        $player->save();
+        return response()->json(['player' => $player]);
     }
 
     /**
@@ -94,6 +86,7 @@ class PlayerController extends Controller
      */
     public function destroy(Player $player)
     {
-        //
+        $player->delete();
+        return response()->json(['success' => true]);
     }
 }

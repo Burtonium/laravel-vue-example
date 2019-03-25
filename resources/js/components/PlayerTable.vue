@@ -3,7 +3,7 @@
     <v-toolbar flat color="white" class="bordered">
       <v-toolbar-title>Players</v-toolbar-title>
       <v-spacer></v-spacer>
-      <player-modal v-if="logged"  :show="showModal" :player="selectedPlayer"/>
+      <player-modal v-if="logged"  :show="showModal" :player="selectedPlayer" @close="handleModalClose"/>
     </v-toolbar>
     <v-data-table
       :headers="headers"
@@ -84,6 +84,10 @@ export default {
     this.initialize()
   },
   methods: {
+    handleModalClose(){
+      this.showModal = false;
+      this.selectedPlayer = {};
+    },
     viewPlayer(id) {
       this.$router.push({ name: 'player', params: { id } });
     },
@@ -91,7 +95,9 @@ export default {
       this.$store.dispatch(FETCH_PLAYERS).finally(() => { this.loading = false });
     },
     editItem (item) {
-      // TODO
+      this.selectedPlayer = item;
+      this.showModal = true;
+      console.log('WE IN HERE')
     },
     deleteItem (item) {
       // TODO

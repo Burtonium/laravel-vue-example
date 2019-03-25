@@ -11,7 +11,6 @@ export default {
     return response;
   },
   async [actions.FETCH_PLAYER](context, id) {
-    console.log("WE IN HERE YO");
     const response = await players.fetchOne(id);
     assert(response.status === 200);
     const { player, teams } = response.data;
@@ -24,5 +23,12 @@ export default {
     assert(response.status === 200);
     context.commit(mutations.ADD_PLAYER, response.data.player);
     return response;
-  } 
+  },
+  async [actions.PATCH_PLAYER](context, player) {
+    const response = await players.patch(player);
+    assert(response.status === 200);
+    context.commit(mutations.PATCH_PLAYER, response.data.player);
+    return response;
+  },
+  
 };
