@@ -12,5 +12,13 @@ export default {
   },
   [types.ADD_TEAM](state, team) {
     state.teams.push(team);
-  }
+  },
+  [types.PATCH_TEAM](state, team) {
+    const index = state.teams.findIndex(({ id }) => id === team.id);
+    state.teams.splice(index, 1, team);
+  },
+  [types.DELETE_TEAM](state, id) {
+    const index = state.teams.findIndex(t => t.id === id);
+    state.teams.splice(index, 1);
+  },
 };

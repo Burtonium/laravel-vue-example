@@ -16,10 +16,10 @@ class CreateContractsTable extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('player_id');
-            $table->foreign('player_id')->references('id')->on('players');
+            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');;
             $table->unsignedBigInteger('team_id');
             $table->index('player_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');;
             $table->integer('contract_length_days')->notNullable();
             $table->date('termination_date')->notNullable();
             $table->index('team_id');

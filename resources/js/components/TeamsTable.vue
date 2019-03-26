@@ -3,7 +3,12 @@
     <v-toolbar flat color="white" class="bordered">
       <v-toolbar-title>Teams</v-toolbar-title>
       <v-spacer></v-spacer>
-      <teams-modal v-if="logged && user.isAdmin"  :show="showModal" :team="selectedTeam"/>
+      <teams-modal 
+        v-if="logged && user.isAdmin"  
+        :show="showModal" 
+        :team="selectedTeam"
+        @close="handleModalClose"
+      />
     </v-toolbar>
     <v-data-table
       :headers="headers"
@@ -42,7 +47,7 @@
 </template>
 <script>
 import TeamsModal from '@/js/components/TeamsModal.vue';
-import { FETCH_TEAMS } from '@/js/store/action-types';
+import { FETCH_TEAMS, DELETE_TEAM } from '@/js/store/action-types';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -80,6 +85,10 @@ export default {
     this.initialize()
   },
   methods: {
+    handleModalClose(){
+      this.showModal = false;
+      this.selectedTeam = {};
+    },
     viewTeam(id) {
       this.$router.push({ name: 'team', params: { id } });
     },
@@ -87,10 +96,12 @@ export default {
       this.$store.dispatch(FETCH_TEAMS).finally(() => { this.loading = false });
     },
     editItem (item) {
-      // TODO
+      this.selectedTeam = item;
+      this.showModal = true;
     },
     deleteItem (item) {
-      // TODO
+      const confirmed = confirm('This will delete all associated contracts. Are you sure?');
+      this.$store.dispatch(DELETE_TEAM, item.id);
     },
   },
 }

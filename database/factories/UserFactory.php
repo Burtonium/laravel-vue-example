@@ -24,3 +24,13 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+$factory->state(User::class, 'admin', [
+    'is_admin' => true,
+    'email' => 'admin@example.com',
+]);
+
+$factory->state(User::class, 'user', [
+    'is_admin' => false,
+    'email' => 'user@example.com',
+]);

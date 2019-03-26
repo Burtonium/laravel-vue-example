@@ -11,6 +11,9 @@ export default {
     return axios.post('/teams', team);
   },
   patch(team) {
-    return axios.patch(`/teams/${id}`, team);
+    return axios.patch(`/teams/${team.id}`, team);
+  },
+  delete(id) {
+    return axios.delete(`/teams/${id}`);
   }
 };

@@ -9,4 +9,3 @@ $factory->define(App\Player::class, function (Faker $faker) {
       'last_name' => $faker->lastName,
   ];
 });
-

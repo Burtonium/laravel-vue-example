@@ -16,5 +16,9 @@ export default {
   [types.PATCH_PLAYER](state, player) {
     const index = state.players.findIndex(p => p.id === player.id);
     state.players.splice(index, 1, player);
-  }
+  },
+  [types.DELETE_PLAYER](state, id) {
+    const index = state.players.findIndex(p => p.id === id);
+    state.players.splice(index, 1);
+  },
 };

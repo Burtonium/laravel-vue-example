@@ -44,7 +44,7 @@
 </template>
 <script>
 import PlayerModal from '@/js/components/PlayerModal.vue';
-import { FETCH_PLAYERS } from '@/js/store/action-types';
+import { FETCH_PLAYERS, DELETE_PLAYER } from '@/js/store/action-types';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -97,10 +97,10 @@ export default {
     editItem (item) {
       this.selectedPlayer = item;
       this.showModal = true;
-      console.log('WE IN HERE')
     },
     deleteItem (item) {
-      // TODO
+      const confirmed = confirm('This will delete all associated contracts. Are you sure?');
+      this.$store.dispatch(DELETE_PLAYER, item.id);
     },
   },
 }

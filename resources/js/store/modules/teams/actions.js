@@ -21,5 +21,18 @@ export default {
     const response = await teams.create(team);
     assert(response && response.status === 200);
     context.commit(mutations.ADD_TEAM, team);
+    return response;
+  },
+  async [actions.PATCH_TEAM](context, team) {
+    const response = await teams.patch(team);
+    assert(response.status === 200);
+    context.commit(mutations.PATCH_TEAM, response.data.team);
+    return response;
+  },
+  async [actions.DELETE_TEAM](context, id) {
+    const response = await teams.delete(id);
+    assert(response && response.status === 200);
+    context.commit(mutations.DELETE_TEAM, id);
+    return response;
   }
 };

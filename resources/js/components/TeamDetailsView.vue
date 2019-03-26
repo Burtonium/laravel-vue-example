@@ -1,7 +1,13 @@
 <template>
   <div>
-    <h2>Team: {{ team.name }}</h2>
-    <h4>Created: {{ team.createdAt }}</h4>
+    <v-card>
+      <v-card-title primary-title>
+        <div>
+          <h3 class="headline mb-0">{{ team.name }}</h3>
+          <div> Created: {{ team.createdAt }} </div>
+        </div>
+      </v-card-title>
+    </v-card>
   </div>
 </template>
 <script>

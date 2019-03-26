@@ -12,5 +12,8 @@ export default {
   },
   patch(player) {
     return axios.patch(`/players/${player.id}`, player);
+  },
+  delete(id) {
+    return axios.delete(`/players/${id}`);
   }
 };

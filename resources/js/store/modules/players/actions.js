@@ -30,5 +30,10 @@ export default {
     context.commit(mutations.PATCH_PLAYER, response.data.player);
     return response;
   },
-  
+  async [actions.DELETE_PLAYER](context, id) {
+    const response = await players.delete(id);
+    assert(response.status === 200);
+    context.commit(mutations.DELETE_PLAYER, id);
+    return response;
+  }
 };
